@@ -3,11 +3,13 @@ require "rubygems"
 require "language_pack"
 require "language_pack/base"
 require "language_pack/bundler_lockfile"
+require "language_pack/audible_magic"
 
 # base Ruby Language Pack. This is for any base ruby app.
 class LanguagePack::Ruby < LanguagePack::Base
   include LanguagePack::BundlerLockfile
   extend LanguagePack::BundlerLockfile::ClassMethods
+  include LanguagePack::AudibleMagic
 
   BUILDPACK_VERSION    = "v64"
   LIBYAML_VERSION      = "0.1.4"
@@ -66,6 +68,7 @@ class LanguagePack::Ruby < LanguagePack::Base
     remove_vendor_bundle
     install_ruby
     install_jvm
+    install_audible_magic
     setup_language_pack_environment
     setup_profiled
     allow_git do
